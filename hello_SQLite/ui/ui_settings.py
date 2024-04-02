@@ -8,6 +8,7 @@ background_color: QtGui.QColor = QtGui.QColor(40, 40, 40)  # Dark gray or black
 text_color: QtGui.QColor = QtGui.QColor(210, 210, 210)  # Light gray or off-white
 table_selected_color: QtGui.QColor = QtGui.QColor("#505050")
 button_color: QtGui.QColor = QtGui.QColor(Qt.GlobalColor.gray)
+close_button_color: QtGui.QColor = QtGui.QColor(195, 90, 90)
 header_color: QtGui.QColor = QtGui.QColor(50, 50, 50)  # Replace with your preferred RGB values
 click_color: QtGui.QColor = QtGui.QColor(Qt.GlobalColor.darkGray)
 hover_color: QtGui.QColor = QtGui.QColor('#005050')
@@ -19,6 +20,8 @@ orange_color: QtGui.QColor = QtGui.QColor('#ffa500')
 
 # Style Sheet
 button_stylesheet = "background-color: {};".format(button_color.name())
+close_button_stylesheet = "background-color: {};".format(close_button_color.name())
+
 label_stylesheet = "color: {};".format(text_color.name())
 green_label_stylesheet = "color: {}; background-color: {};".format(green_color.name(), background_color.name())
 red_label_stylesheet = "color: {}; background-color: {};".format(red_color.name(), background_color.name())
@@ -100,6 +103,10 @@ def format_red_label(widget: QtWidgets.QLabel):
 
 def format_button(widget: QtWidgets.QPushButton):
     widget.setStyleSheet(button_stylesheet)
+
+
+def format_red_button(widget: QtWidgets.QPushButton):
+    widget.setStyleSheet(close_button_stylesheet)
 
 
 def format_text_field(widget: QtWidgets.QLineEdit, validator_type: str = int_validator, max_length: int = 8, decimal_places: int = 2):

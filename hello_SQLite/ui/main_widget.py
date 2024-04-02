@@ -36,7 +36,6 @@ class Main_Widget(QtWidgets.QWidget):
         painter.fillRect(rect, ui_settings.background_color)
 
     def button_clicked(self):
-        print("Add Employee Button Clicked")
         from ui import window_controller
         from ui.add_emp_dialog import Add_Employee_Dialog
         window_controller.create_dialog(Add_Employee_Dialog())

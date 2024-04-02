@@ -10,7 +10,7 @@ class Adjust_Salary_Dialog(QtWidgets.QWidget):
     def __init__(self, employee):
         super().__init__()
         self.employee = employee
-        self.page_name = QtWidgets.QLabel("Update Employee Salary")
+        self.page_name = QtWidgets.QLabel("Edit Employee")
         self.first_name_label = QtWidgets.QLabel(f"First Name:")
         self.last_name_label = QtWidgets.QLabel(f"Last Name:")
         self.salary_label = QtWidgets.QLabel("Salary: ")
@@ -29,8 +29,14 @@ class Adjust_Salary_Dialog(QtWidgets.QWidget):
         ui_settings.format_text_field(self.salary_text, validator_type=ui_settings.int_validator, max_length=7)
 
         self.submit_button = QtWidgets.QPushButton("Submit")
+        self.remove_button = QtWidgets.QPushButton("Remove")
+
         ui_settings.format_button(self.submit_button)
+        ui_settings.format_red_button(self.remove_button)
+
+
         self.submit_button.clicked.connect(self.submit_clicked)
+        self.remove_button.clicked.connect(self.remove_clicked)
         self.setLayout(QtWidgets.QVBoxLayout())
 
         self.align()
@@ -40,7 +46,7 @@ class Adjust_Salary_Dialog(QtWidgets.QWidget):
         left_widget = ui_settings.align_vertical([self.first_name_label, self.last_name_label, self.salary_label])
         right_widget = ui_settings.align_vertical([self.first_label, self.last_label, self.salary_text])
         central_widget = ui_settings.align_horizontal([left_widget, right_widget], stretch_beginning=True, stretch_end=True)
-        bottom_widget = ui_settings.align_horizontal([self.submit_button], stretch_beginning=True, stretch_end=True)
+        bottom_widget = ui_settings.align_horizontal([self.submit_button, self.remove_button], stretch_beginning=True, stretch_end=True)
 
         self.layout().addWidget(top_widget)
         self.layout().addWidget(central_widget)
@@ -59,6 +65,15 @@ class Adjust_Salary_Dialog(QtWidgets.QWidget):
             return
 
         sqlite_demo.update_pay(self.employee, salary)
+        self.close_dialog()
+
+    def remove_clicked(self):
+
+        sqlite_demo.remove_employee(self.employee)
+        self.close_dialog()
+
+    def close_dialog(self):
+
         from ui import window_controller
         from ui.main_widget import Main_Widget
         window_controller.switch_ui(Main_Widget())

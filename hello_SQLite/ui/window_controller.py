@@ -31,7 +31,6 @@ def create_dialog(widget_dialog: QtWidgets.QWidget):
     center_y: int = int(window.geometry().center().y() - ui_settings.dialog_height // 2)
     log_window.setGeometry(center_x, center_y, ui_settings.dialog_width, ui_settings.dialog_height)
     log_window.show()
-    print(f"height: {log_window.height()}")
 
 
 def close_dialog():
