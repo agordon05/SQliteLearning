@@ -7,6 +7,7 @@ from ui import ui_settings
 class Table_Widget(QtWidgets.QTableWidget):
     def __init__(self, employees: [Employee]):
         super().__init__()
+        self.row_under_mouse = -1
         self.employees = employees
         self.__sort()
         self.__set_settings()

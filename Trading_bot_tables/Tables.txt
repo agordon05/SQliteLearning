@@ -1,0 +1,123 @@
+--- Exchange Table: {
+ID: PK
+Exchange Type ID: FK (Exchange Type Table)
+Status ID: FK (Status Table)
+Key ID: FK (Exchange Keys Table)
+Settings ID: FK (Future Implementation)
+Name: str
+Investment Amount: Decimal
+Total Balance: Decimal
+Available Balance: Decimal
+Forgotten Profit: Decimal
+Available Profit: Decimal
+Time Stamp: datetime
+}
+
+--- Bot Table: {
+ID: PK
+Exchange ID: FK (Exchange Table)
+Status ID: FK (Status Table)
+Contract ID: FK (Contract Table)
+Strategy ID: FK (Strategy Type Table)
+Settings ID: FK (Strategy Settings Table)
+Name: str
+Investment Amount: Decimal
+Total Balance: Decimal
+Available Balance: Decimal
+Total Crypto: Decimal
+Forgotten Profit: Decimal
+Available Profit: Decimal
+TimeStamp: datetime
+}
+
+--- Trade Table: {
+ID: PK
+Associated ID (Trade ID): FK (Trade Table) (can be null)
+Exchange ID: FK (Exchange Table)
+Contract ID: FK (Contract Table)
+Status ID: FK (Status Table)
+Bot ID: FK (Bot Table)
+Side: str (can only be buy or sell)
+Position Side: str (can only be long or short)
+Entry Price: Decimal
+USDT: Decimal
+Crypto: Decimal
+Time Stamp: datetime
+}
+
+--- Contract Table: {
+ID: PK
+Exchange Type ID: FK (Exchange Type Table)
+Symbol ID: FK (Symbol Table)
+Base Asset: str
+Quote Asset: str
+Price Decimals: str
+Quantity Decimals: str
+Tick Size: str
+Lot Size: str
+Quanto: str
+Inverse: str
+Multiplier: str
+}
+
+--- Time Frame Table: {
+ID: PK
+Time Frame: str
+}
+
+--- Status Table: {
+ID: PK
+Status: str
+}
+
+--- Exchange Keys Table: {
+ID: PK
+Exchange Type ID: FK (Exchange Type Table)
+Public Key: str
+Private Key: str
+}
+
+--- Exchange Type Table: {
+ID: PK
+Exchange Type: str
+}
+
+--- Exchange Settings Table: {
+ID: PK
+(Future Implementation)
+}
+
+--- Strategy Type Table: {
+ID: PK
+Strategy Type: str
+}
+
+--- Strategy Settings Table: {
+ID: PK
+Link ID: FK (Strategy Param Link Table)
+Growth Rate: str
+}
+
+--- Strategy Param Link Table: {
+ID: PK
+Strategy Type ID: FK (Strategy Type Table)
+Params ID: FK ((Specific Strategy) Param Table)
+}
+
+--- (Specific Strategy) Param Table: {
+ID: PK
+Stop Loss: str
+Take Profit: str
+ETC.
+}
+
+--- Grid Strategy Param Table: {
+ID: PK
+Stop Loss: str
+Take Profit: str
+Upper: text
+Lower: text
+number of intervals: Int
+trade size: str
+}
+
